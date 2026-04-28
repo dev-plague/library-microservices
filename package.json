@@ -1,0 +1,20 @@
+{
+  "name": "library-microservices",
+  "version": "1.0.0",
+  "workspaces": [
+    "services/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "db:up": "docker compose up -d",
+    "db:stop": "docker compose stop",
+    "db:down": "docker compose down",
+    "db:reset": "docker compose down -v && docker compose up -d",
+    "catalog:dev": "bun --filter catalog-service dev",
+    "inventory:dev": "bun --filter inventory-service dev"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.13",
+    "typescript": "^5.0.0"
+  }
+}

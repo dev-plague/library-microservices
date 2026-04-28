@@ -1,0 +1,30 @@
+services:
+  # Base de datos para el servicio de Catálogo
+  db-catalog:
+    image: postgres:17-alpine
+    container_name: catalog-db
+    environment:
+      POSTGRES_USER: ctgadmin
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: catalog_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - catalog_data:/var/lib/postgresql/data
+
+  # Base de datos para el servicio de Inventario
+  db-inventory:
+    image: postgres:17-alpine
+    container_name: inventory-db
+    environment:
+      POSTGRES_USER: invadmin
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: inventory_db
+    ports:
+      - "5434:5432"
+    volumes:
+      - inventory_data:/var/lib/postgresql/data
+
+volumes:
+  catalog_data:
+  inventory_data:
