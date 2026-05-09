@@ -3,6 +3,7 @@ import { eq, getTableColumns } from "drizzle-orm";
 import type { Context } from "hono";
 import { db } from "../db";
 import { authors, books } from "../db/schema";
+import { EVENTS, eventBus } from "../events/event-bus";
 
 // GET
 export const getBooks = async (c: Context) => {
@@ -112,6 +113,8 @@ export const createBook = async (c: Context) => {
 				publishedYear,
 			})
 			.returning();
+
+		eventBus.emit(EVENTS.BOOK_CREATED, newBook);
 
 		return c.json(newBook, 201);
 	} catch (error) {

@@ -1,6 +1,7 @@
 import { Hono } from "hono";
 import authorsRoutes from "./routes/authors.routes";
 import booksRoutes from "./routes/books.ruotes";
+import "./events/subscribers";
 
 const app = new Hono();
 
