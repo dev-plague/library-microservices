@@ -1,5 +1,5 @@
 {
-  "name": "catalog-service",
+  "name": "inventory-service",
   "scripts": {
     "dev": "bun run --env-file=.env --hot src/index.ts",
     "db:sync": "bunx drizzle-kit push",

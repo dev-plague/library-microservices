@@ -1,9 +1,10 @@
-import type { Book } from "@library/shared-types";
+// import type { Book } from "@library/shared-types";
 import { eq, getTableColumns } from "drizzle-orm";
 import type { Context } from "hono";
 import { db } from "../db";
 import { authors, books } from "../db/schema";
 import { EVENTS, eventBus } from "../events/event-bus";
+import type { Book } from "../types";
 
 // GET
 export const getBooks = async (c: Context) => {

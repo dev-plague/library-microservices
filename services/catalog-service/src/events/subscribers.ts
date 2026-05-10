@@ -1,4 +1,5 @@
-import type { Author, Book } from "@library/shared-types";
+// import type { Author, Book } from "@library/shared-types";
+import type { Author, Book } from "../types";
 import { EVENTS, eventBus } from "./event-bus";
 
 eventBus.on(EVENTS.BOOK_CREATED, (book: Book) => {
