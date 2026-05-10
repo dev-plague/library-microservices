@@ -6,6 +6,7 @@ import { EVENTS, eventBus } from "../events/event-bus";
 import { fetch } from "bun";
 import type { Stock } from "../../types/stocks";
 
+const catalogUrl = process.env.CATALOG_SERVICE_URL || "http://localhost:3000";
 // GET
 export const getStocks = async (c: Context) => {
     try {
@@ -33,7 +34,7 @@ export const createStock = async (c: Context) => {
             );
         }
 
-        const response = await fetch(`http://localhost:3000/books/${bookId}`);
+        const response = await fetch(`${catalogUrl}/books/${bookId}`);
 
         if (response.status === 404) {
             return c.json(
@@ -43,10 +44,7 @@ export const createStock = async (c: Context) => {
         }
 
         if (!response.ok) {
-            return c.json(
-                { error: `Error inesperado en el servicio de catálogo: ${response.status}` },
-                response.status
-            );
+            throw new Error(`Error en la petición: ${response.status}`); 
         }
 
         const book = await response.json();
